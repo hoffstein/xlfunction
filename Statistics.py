@@ -1,10 +1,10 @@
 """
+Statistics.py
+
 Excel-compatible statistics functions.
 
-@author: Ben Hoffstein
-@organization: Red Hook Software, LLC
-@version: 1.0
-@since: 2008-09-11
+Originally written by:
+2008-09-11 Benjamin Hoffstein, benjamin.hoffstein@red-hook.com
 """
 
 import math
@@ -106,7 +106,7 @@ def intercept(known_y, known_x):
     """
     Calculates the point at which a line will intersect the y-axis by using
     existing x-values and y-values. The intercept point is based on a best-fit
-    regression line plotted through the known x-values and known y-values. 
+    regression line plotted through the known x-values and known y-values.
     """
     muy = average(known_y)
     mux = average(known_x)
@@ -114,7 +114,7 @@ def intercept(known_y, known_x):
 
     return muy - (b * mux)
 
-    
+
 def isnumber(x):
     """Returns True if x is a number or False if not."""
     return hasattr(x, '__int__')
@@ -173,7 +173,7 @@ def var(data):
     Returns the variance, assuming the data represents a sample of the
     population.
     """
-    return variance(data, True)
+    return _variance(data, True)
 
 
 def varp(data):
@@ -181,10 +181,10 @@ def varp(data):
     Returns the variance, assuming the data represents the entire
     population.
     """
-    return variance(data, False)
+    return _variance(data, False)
 
 
-def variance(data, is_sample=True):
+def _variance(data, is_sample=True):
     """Returns the variance."""
     n = len(data)
     if n == 0:
@@ -203,7 +203,7 @@ def stdev(data):
     Returns the standard deviation, assuming the data represents a sample
     of the population.
     """
-    return standard_deviation(data, True)
+    return _standard_deviation(data, True)
 
 
 def stdevp(data):
@@ -211,10 +211,10 @@ def stdevp(data):
     Returns the standard deviation, assuming the data represents the entire
     population.
     """
-    return standard_deviation(data, False)
+    return _standard_deviation(data, False)
 
 
-def standard_deviation(data, is_sample=True):
+def _standard_deviation(data, is_sample=True):
     """Returns the standard deviation."""
     if is_sample:
         return math.sqrt(var(data))
